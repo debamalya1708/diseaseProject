@@ -22,7 +22,9 @@ def home():
     #     data="May have stroke"
     # else:
     #     data="Will not have stroke"
-    return jsonify({'data': data})
+    response=jsonify({'data': data})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 
