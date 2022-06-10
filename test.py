@@ -7,6 +7,7 @@ CORS(app)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 @app.route('/', methods=['POST'])
+@cross_origin()
 def home():
     request_data = request.get_json()
     print(request_data)
