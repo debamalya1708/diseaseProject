@@ -20,6 +20,13 @@ def home():
     # response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
+@app.route('/',methods=["GET"])
+def come():
+    data = "Welcome"
+    response = jsonify({'data': data})
+    return response
+
+
 # def _build_cors_preflight_response():
 #     response = make_response()
 #     response.headers.add("Access-Control-Allow-Origin", "*")
