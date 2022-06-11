@@ -20,6 +20,13 @@ def home():
     # response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
+@app.route('/register',methods=["POST"])
+def register():
+    data = "Register post called"
+    response = jsonify({'data': data})
+    return response
+
+
 @app.route('/',methods=["GET"])
 def come():
     data = "Welcome"
