@@ -4,6 +4,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 # app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 @app.route('/res')
