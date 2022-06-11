@@ -1,18 +1,12 @@
 from flask import Flask, jsonify, request
 import pickle
-from flask_cors import CORS,cross_origin
-# from flask.ext.cors import CORS, cross_origin
-
-# from flask_restful.utils.cors import crossdomain
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"*": {"origins": "*"}})
+CORS(app)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 @app.route('/', methods=['POST'])
-# @app.route('/foo', methods=['POST','OPTIONS'])
-# @crossdomain(origin='*')
-# @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def home():
     request_data = request.get_json()
     print(request_data)
@@ -21,12 +15,8 @@ def home():
     loaded_model = pickle.load(open(filename, 'rb'))
     pred = loaded_model.predict(x_test)
     data=str(pred[0])
-    # if (pred[0] == 0):
-    #     data="May have stroke"
-    # else:
-    #     data="Will not have stroke"
     response=jsonify({'data': data})
-    response.headers.add("Access-Control-Allow-Origin", "*")
+    # response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
 
