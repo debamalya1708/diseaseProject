@@ -1,15 +1,15 @@
 from flask import Flask, jsonify, request
 import pickle
-from flask_cors import CORS, cross_origin
-from flask_restful.utils.cors import crossdomain
+from flask_cors import CORS
+# from flask_restful.utils.cors import crossdomain
 
 app = Flask(__name__)
 CORS(app)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 @app.route('/', methods=['POST'])
-@crossdomain(origin='*')
-@cross_origin()
+# @crossdomain(origin='*')
+# @cross_origin()
 def home():
     request_data = request.get_json()
     print(request_data)
