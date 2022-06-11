@@ -1,6 +1,6 @@
-from flask import Flask, jsonify, request
+from flask import Flask, request, jsonify, make_response
 import pickle
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
@@ -8,8 +8,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 # app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 
-@app.route('/res')
-@cross_origin()
+@app.route('/res', methods=["POST"])
 def home():
     request_data = request.get_json()
     print(request_data)
@@ -20,9 +19,18 @@ def home():
     data=str(pred[0])
     response=jsonify({'data': data})
     # response.headers.add("Access-Control-Allow-Origin", "*")
+    return _corsify_actual_response(response)
+
+def _build_cors_preflight_response():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
     return response
 
-
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 # driver function
 if __name__ == '__main__':
