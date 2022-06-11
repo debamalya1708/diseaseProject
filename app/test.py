@@ -12,7 +12,7 @@ def home():
     request_data = request.get_json()
     print(request_data)
     x_test=[[request_data["age"],request_data["hypertension"],request_data["heartDisease"],request_data["avgGlucose"]]]
-    filename = 'stroke_analysis.sav'
+    filename = '../stroke_analysis.sav'
     loaded_model = pickle.load(open(filename, 'rb'))
     pred = loaded_model.predict(x_test)
     data=str(pred[0])
