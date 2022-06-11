@@ -6,15 +6,13 @@ from flask_cors import CORS,cross_origin
 # from flask_restful.utils.cors import crossdomain
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
-CORS(app)
+CORS(app, resources={r"*": {"origins": "*"}})
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
-@app.route('/', methods=['POST','OPTIONS'])
+@app.route('/', methods=['POST'])
 # @app.route('/foo', methods=['POST','OPTIONS'])
 # @crossdomain(origin='*')
-@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+# @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def home():
     request_data = request.get_json()
     print(request_data)
@@ -28,7 +26,7 @@ def home():
     # else:
     #     data="Will not have stroke"
     response=jsonify({'data': data})
-    # response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
 
