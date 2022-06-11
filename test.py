@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/')
 def home():
     request_data = request.get_json()
     print(request_data)
