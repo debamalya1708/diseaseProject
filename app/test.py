@@ -7,7 +7,7 @@ CORS(app)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 
-@app.route('/check',methods=["POST"])
+@app.route('/',methods=["POST"])
 def home():
     request_data = request.get_json()
     print(request_data)
@@ -32,20 +32,6 @@ def come():
     data = "Welcome"
     response = jsonify({'data': data})
     return response
-
-
-# def _build_cors_preflight_response():
-#     response = make_response()
-#     response.headers.add("Access-Control-Allow-Origin", "*")
-#     response.headers.add('Access-Control-Allow-Headers', "*")
-#     response.headers.add('Access-Control-Allow-Methods', "*")
-#     return response
-#
-# def _corsify_actual_response(response):
-#     response.headers.add("Access-Control-Allow-Origin", "*")
-#     return response
-
-# driver function
 
 if __name__ == "__main__":
     # app.debug = True
